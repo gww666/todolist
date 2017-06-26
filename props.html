@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.js"></script>
+    <script>
+        window.onload = () => {
+            let BCom = {
+                template : `
+                    <div>
+                        <hr />
+                        <p>这是B组件</p>
+                        <span>这是父组件传过来的值：{{message}}</span>
+                        <input type="text" v-model="val"/>
+                        <button v-on:click="sendVal">send</button>
+                    </div>
+                `,
+                data () {
+                    return {
+                        val : ""
+                    }
+                },
+                // props : ["message"]
+                props : {
+                    message : String
+                },
+                methods : {
+                    sendVal () {
+                        // return this.val
+                        this.$emit("sendVal", this.val);
+                    }
+                }
+            }
+
+            let ACom = {
+                template : `
+                    <div>
+                        <p>这是A组件</p>
+                        <input type="text" v-model="val"/>
+                        <span>接收子组件传过来的值：{{val}}</span>
+                        <b-com :message="val" @sendVal="getVal"></b-com>
+                    </div>
+                `,
+                data () {
+                    return {
+                        val : ""
+                    }
+                },
+                methods : {
+                    getVal (val) {
+                        
+                        this.val = val;
+                    }
+                },
+                components : {
+                    "b-com" : BCom
+                }
+            }
+
+            
+            // let bCom = Vue.component("");
+            
+            let app = new Vue({
+                el : "#box",
+                components : {
+                    "a-com" : ACom
+                }
+            })
+        }
+    </script>
+</head>
+<body>
+    <div id="box">
+        <a-com></a-com>
+    </div>
+</body>
+</html>

@@ -1,0 +1,131 @@
+.add-title {
+    font-size: 0.3rem;
+    font-weight: bold;
+    background: #0096ff;
+    color: white;
+    height: 0.88rem;
+    display: flex;
+    align-items: center;
+    padding: 0 0.2rem;
+    box-sizing: border-box;
+    justify-content: space-between;
+}
+.add-title h1 {
+    margin: 0;
+    padding: 0;
+    font-size: 0.3rem;
+
+}
+.list-container {
+    margin-top: 0.3rem;
+    padding: 0 0.3rem;
+}
+.item-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.3rem;
+    background: #f0f0f0;
+    border-radius: 10px;
+
+}
+.item-container >div {
+    display: flex;
+}
+.item-container-left {
+    flex-flow: column wrap;
+}
+.item-container-right {
+    align-items: center;
+}
+.item-container-right >span {
+    font-weight: normal;
+    color: #444;
+}
+.item-container-right .done {
+    margin-right: 0.2rem;
+}
+.control-add-container {
+    height: 6rem;
+    width: 100%;
+    position: fixed;
+    left: 0;
+    bottom: -6rem;
+    z-index: 1;
+    background: #fff;
+    display: flex;
+    flex-flow: column wrap;
+}
+.addshow {
+    animation: addshow 0.3s forwards;
+}
+.addhide {
+    animation: add-hide 0.3s forwards;
+}
+@keyframes addshow {
+    from {
+        /*transform: translateY(0);*/
+        bottom: -6rem;
+        /*background: #000;*/
+    }
+    to {
+        /*transform: translateY(-300px);*/
+        bottom : 0;
+        /*background: red;*/
+    }
+}
+@keyframes add-hide {
+    from {
+        /*transform: translateY(0);*/
+        bottom: 0;
+        /*background: #000;*/
+    }
+    to {
+        /*transform: translateY(-300px);*/
+        bottom : -6rem;
+        /*background: red;*/
+    }
+}
+
+/*add-container*/
+.add-container {
+    height: 100%;
+    width: 100%;
+    
+}
+.add-container-form {
+    padding: 0 0.2rem;
+    height: 5.2rem;
+    display: flex;
+    align-items: center;
+}
+
+/*遮罩层*/
+.app-cover {
+    background: #000;
+    opacity: 0.5;
+    width: 100%;
+    /*height: 100%;*/
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    display: none;
+
+}
+
+.appcovershow {
+    display: block;
+}
+.appcoverhide {
+    display: none;
+}
+
+.add-container-title {
+    background: #0096ff;
+    height: 0.8rem;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 0.2rem;
+    color: #fff;
+    align-items: center;
+}

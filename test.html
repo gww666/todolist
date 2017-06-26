@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .v-show {
+            width: 50px;
+            height: 50px;
+            background: #000;
+
+        }
+        /*.v-if {
+            height: 50px;
+            width: 50px;
+            background: red;
+        }*/
+        div[class|="v-"] {
+            width: 30px;
+            height: 30px;
+            margin-top: 10px;
+            background: pink;
+        }
+        .menudiv {
+            background: pink;
+            width: 50px;
+            height: 50px;
+        }
+        .red {
+            background: red;
+            width: 50px;
+            height: 50px;
+        }
+        .yellow {
+            background: yellow;
+            width: 50px;
+            height: 50px;
+        }
+        .blue {
+            background: blue;
+            width: 50px;
+            height: 50px;
+        }
+    </style>
+    <script src="vue.js"></script>
+    <script>
+        window.onload = () => {
+            let app = new Vue({
+            el : "#box",
+                data : {
+                    word : "hello",
+                    html : "<h1>hello</h1>",
+                    isShow : true,
+                    type : "4",
+                    arr : [111, 222, 333, 444],
+                    obj : {
+                        name : "zs",
+                        age : 166
+                    },
+                    title : "this is a title",
+                    classVal : {
+                        red :true,
+                        yellow : true,
+                        blue :true
+                    }
+                },
+                methods : {
+                    divMouseUp () {
+                        console.log("divMouseUp");
+                    },
+                    divContextMenu () {
+                        console.log("divContextMenu");
+                    },
+                    divMouseOver () {
+                        console.log("divMouseOver");
+                    },
+                    divTouchMove () {
+                        console.log("divTouchMove");
+                    }
+                }
+            });
+        }
+        
+    </script>
+</head>
+<body>
+    <div id="box">
+        <span v-text="word"></span>
+        <span v-html="html"></span>
+        <input type="text" v-model="type">
+        <input type="checkbox" v-model="isShow">
+        <div class="v-show" v-show="isShow"></div>
+        <div class="v-if" v-if="type === '1'">1</div>
+        <div class="v-else-if" v-else-if="type === '2'">2</div>
+        <div class="v-else" v-else>3</div>
+        <span>列表</span>
+        <span v-for="(item, index) in arr">
+            {{index}} : {{item}}
+        </span>
+        <span v-for="(value, key) in obj">
+            {{key}} : {{value}}
+        </span>
+        <button @mouseup="divMouseUp">click</button>
+        <div class="menudiv" 
+            v-on:contextmenu.prevent="divContextMenu()" 
+            v-on:click="divMouseOver"
+            v-on:touchmove="divTouchMove">menu</div>
+        <p :title="title">鼠标悬停显示title</p>
+        <input type="checkbox" v-model="classVal.red">
+        <input type="checkbox" v-model="classVal.yellow">
+        <input type="checkbox" v-model="classVal.blue">
+        <div :class="{red : classVal.red}">classVal</div>
+    </div>
+</body>
+</html>
