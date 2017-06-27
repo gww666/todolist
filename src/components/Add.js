@@ -1,3 +1,4 @@
+import bus from "./bus";
 const Add = {
     template : `
         <div class="add-container">
@@ -10,25 +11,38 @@ const Add = {
                 <div style="width : 100%;">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Title</label>
-                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="input title">
+                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="input title" v-model="title">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Description</label>
-                        <input type="text" class="form-control" id="exampleInputPassword1" placeholder="input description">
+                        <input type="text" class="form-control" id="exampleInputPassword1" placeholder="input description" v-model="des">
                     </div>
-                    <button class="btn btn-default">Add It</button>
+                    <input type="button" class="btn btn-default" value="Add It" @click="addItem">
                 </div>
             </form>
         </div>
     `,
     data () {
         return {
-
+            title : "",
+            des : "",
+            itemId : 0
         }
     },
     methods : {
         closeAdd () {
             this.$emit("closeAdd", false);
+        },
+        addItem () {
+            console.log(this);
+            this.itemId += 1;
+            let obj = {
+                title :　this.title,
+                des :　this.des,
+                itemId : this.itemId
+            }
+            bus.$emit("mclick", obj);
+            this.$emit("closeAdd");
         }
     }
 }

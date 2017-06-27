@@ -17,7 +17,8 @@
 
 }
 .list-container {
-    margin-top: 0.3rem;
+    /*margin-top: 0.3rem;*/
+    overflow: hidden;
     padding: 0 0.3rem;
 }
 .item-container {
@@ -26,8 +27,31 @@
     padding: 0.3rem;
     background: #f0f0f0;
     border-radius: 10px;
-
+    margin-top: 0.3rem;
+    position: relative;
 }
+.item-container-cover {
+    background: #000;
+    opacity: 0.5;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+}
+/*定义item鼠标移入动画*/
+.item-container:hover {
+    /*background: #000;*/
+    
+}
+
+.itemclick {
+    /*background: #bbb;
+    transition: all 0.3s;*/
+    animation: item-click 0.3s 2 alternate;
+}
+
 .item-container >div {
     display: flex;
 }
@@ -86,6 +110,8 @@
     }
 }
 
+
+
 /*add-container*/
 .add-container {
     height: 100%;
@@ -114,11 +140,36 @@
 }
 
 .appcovershow {
-    display: block;
+    /*display: block;*/
+    animation: app-cover-show 0.3s forwards;
 }
 .appcoverhide {
-    display: none;
+    animation: app-cover-hide 0.3s;
+    /*display: none;*/
 }
+/*定义遮罩层透明度动画*/
+@keyframes app-cover-show {
+    from {
+        opacity: 0;
+        display: block;
+    }
+    to {
+        opacity: 0.5;
+        display: block;
+    }
+}
+@keyframes app-cover-hide {
+    from {
+        opacity: 0.5;
+        display: block;
+    }
+    to {
+        opacity: 0;
+        display: none;
+    }
+}
+
+
 
 .add-container-title {
     background: #0096ff;
@@ -129,3 +180,14 @@
     color: #fff;
     align-items: center;
 }
+
+
+@keyframes item-click {
+    from {
+        background: #f0f0f0;
+    }
+    to {
+        background: #bbb;
+    }
+}
+
